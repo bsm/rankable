@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.name        = "rankable"
   s.summary     = "Sort your records efficiently!"
-  s.description = "ActiveREcord extension for ranking/storing records"
+  s.description = "ActiveRecord extension for ranking/storing records"
   s.version     = '0.1.0'
 
   s.authors     = ["Dimitrij Denissenko"]

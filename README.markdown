@@ -15,54 +15,56 @@ Then, bundle:
 
 ## Usage Examples:
 
-Specify simple preferences, with defaults:
+In the model:
 
+    # app/models/article.rb
     class Article < ActiveRecord::Base
+      # Include module
       include Rankable::Model
+
+      # You default column is "rank", change it e.g. via:
+      # self.rankable_column_name = :position
     end
 
-Read and write preferences:
+In your controllers:
 
-    user = User.find(1)
-    user.preferences[:newsletter] # => false
-
-    # Set single preferences (with type casting)
-    user.preferences[:newsletter] = '1'
-    user.preferences[:newsletter] # => true
-
-    # or, bulk-set (e.g. from forms)
-    user.preferences = { :newsletter => '1' }
-
-    # Makes preferences persistent
-    user.save
-
-Specify conditions (if/unless):
-
-    class User < ActiveRecord::Base
-
-      preferable do
-        string  :font_color, :default => "444444", :if => lambda {|v| v =~ /^[A-F0-9]{6}$/ }
+    # config/routes.rb
+    MyApp::Application.routes.draw do
+      resources :articles do
+        put :sort, :on => :collection
       end
-
     end
 
-    user = User.find(1)
-    user.preferences[:font_color] = 'INVALID'
-    user.preferences[:font_color] # => '444444'
+    # app/controllers/articles_controllers.rb
+    class ArticlesController < ApplicationController
+      respond_to :html
 
-Store even arrays (with internal casting):
-
-    class User < ActiveRecord::Base
-
-      preferable do
-        array  :popular_words, :cast => :string
+      def sort
+        Articles.rank_all(params[:article_ids])
+        head(:ok)
       end
-
     end
 
-    user = User.find(1)
-    user.preferences[:popular_words] = 'hello'
-    user.preferences[:popular_words] # => ['hello']
+In your views:
+
+  <script>
+  $(function() {
+    $( "#sortable" ).sortable({
+      stop: function() {
+        $.post('<%= sort_articles_path %>', '_method=put&' + $(this).sortable('serialize'));
+      }
+    });
+  });
+  </script>
+
+  <ul id="sortable">
+    <li id="article_ids_1">Article 1</li>
+    <li id="article_ids_2">Article 2</li>
+    <li id="article_ids_3">Article 3</li>
+    <li id="article_ids_4">Article 4</li>
+    <li id="article_ids_5">Article 5</li>
+  </ul>
+
 
 ## License
 

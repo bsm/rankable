@@ -29,7 +29,7 @@ module Rankable::Model
     #
     def rank_all(ids)
       pk_col = columns_hash[primary_key]
-      rk_col = columns_hash[rankable_column_name]
+      rk_col = columns_hash[rankable_column_name.to_s]
 
       raise "Ranking only works with integer primary keys" unless pk_col && pk_col.type == :integer
       raise "Ranking is missing the '#{rankable_column_name}' column. Please add a '#{rankable_column_name}' to your database table or specify a custom column name via self.rankable_column_name = '...'" unless rk_col
