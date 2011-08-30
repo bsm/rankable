@@ -47,23 +47,23 @@ In your controllers:
 
 In your views:
 
-  <script>
-  $(function() {
-    $( "#sortable" ).sortable({
-      stop: function() {
-        $.post('<%= sort_articles_path %>', '_method=put&' + $(this).sortable('serialize'));
-      }
+    <script>
+    $(function() {
+      $( "#sortable" ).sortable({
+        stop: function() {
+          $.post('<%= sort_articles_path %>', '_method=put&' + $(this).sortable('serialize'));
+        }
+      });
     });
-  });
-  </script>
+    </script>
 
-  <ul id="sortable">
-    <li id="article_ids_1">Article 1</li>
-    <li id="article_ids_2">Article 2</li>
-    <li id="article_ids_3">Article 3</li>
-    <li id="article_ids_4">Article 4</li>
-    <li id="article_ids_5">Article 5</li>
-  </ul>
+    <ul id="sortable">
+      <li id="article_ids_1">Article 1</li>
+      <li id="article_ids_2">Article 2</li>
+      <li id="article_ids_3">Article 3</li>
+      <li id="article_ids_4">Article 4</li>
+      <li id="article_ids_5">Article 5</li>
+    </ul>
 
 
 ## License
