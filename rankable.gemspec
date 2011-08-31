@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name        = "rankable"
   s.summary     = "Sort your records efficiently!"
   s.description = "ActiveRecord extension for ranking/storing records"
-  s.version     = '0.1.0'
+  s.version     = '0.1.1'
 
   s.authors     = ["Dimitrij Denissenko"]
   s.email       = "dimitrij@blacksquaremedia.com"
@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.files        = Dir['README.markdown', 'lib/**/*']
 
-  s.add_dependency "activerecord", "~> 3.0.0"
+  s.add_dependency "activerecord", ">= 3.0.0"
 end
