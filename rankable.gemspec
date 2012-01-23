@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = '>= 1.8.7'
+  s.required_ruby_version = '>= 1.9.2'
   s.required_rubygems_version = ">= 1.3.6"
 
   s.name        = "rankable"
   s.summary     = "Sort your records efficiently!"
   s.description = "ActiveRecord extension for ranking/storing records"
-  s.version     = '0.1.1'
+  s.version     = '0.2.0'
 
   s.authors     = ["Dimitrij Denissenko"]
   s.email       = "dimitrij@blacksquaremedia.com"
